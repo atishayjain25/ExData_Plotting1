@@ -1,0 +1,8 @@
+data <- read.csv("household_power_consumption.txt", sep=";", stringsAsFactors = FALSE)
+neededData <- subset(data, Date=="1/2/2007" | Date=="2/2/2007")
+GAP <- as.numeric(neededData$Global_active_power)
+dateTime <- strptime(paste(neededData$Date, neededData$Time), "%d/%m/%Y %H:%M:%S")
+png(filename = "plot2.png", width = 480, height = 480, units = "px")
+plot(dateTime, GAP, type="n", ylab="Global Active Power (kilowatts)", xlab="")
+lines(dateTime, GAP)
+dev.off()
